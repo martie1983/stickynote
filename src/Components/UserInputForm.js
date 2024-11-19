@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 function UserInputForm({submit,close}) {
     return (
@@ -13,7 +13,10 @@ function UserInputForm({submit,close}) {
 
 function StickyNoteForm({submit,close}) {
     const [text, setText] = useState("");
-
+    const ele = useRef(null);
+    useEffect(function () {
+      ele.current.focus();
+    },[]);
     const handleSubmit = (e) => {
         e.preventDefault();
         // Handle form submission logic here
@@ -30,7 +33,8 @@ function StickyNoteForm({submit,close}) {
               type="text"
               placeholder="Write your Reminder..."
               value={text}
-              onChange={(e) => setText(e.target.value)}              
+              onChange={(e) => setText(e.target.value)}
+              ref={ele}              
             />
           </label>
           <button type="submit" onClick={handleSubmit}>Add Note</button>

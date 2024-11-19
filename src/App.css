@@ -6,11 +6,14 @@ body {
   width:100vw;
   height:100vh;
   overflow:hidden;
-  display: flex;
-  flex-direction: column;
+  display: flex;  
   justify-content: start;
+  flex-direction: column;
   align-items: center;
+  flex-wrap: wrap;
 }
+
+
 
 
 .add-sticky-notes {
@@ -121,17 +124,23 @@ section {
 
 .notes-container {
   display: flex;
-  justify-content: start;  
+  justify-content: space-evenly;  
   align-items: flex-start; /* Align items to the left */
   padding: 20px; /* Add some padding for better spacing */
-  position: absolute; /* This will allow it to float above the gradient background */
-  top: 50px; /* Adjust this as needed to provide some space from the top */
-  left: 20px; /* Adjust this to provide space from the left */
+  /* position: absolute; 
+  top: 50px; 
+  left: 20px;  */
   gap:1.5rem;
+  flex-wrap: wrap;
+  
 }
 
 .note-item {
-  width: 200px;
+  /* width: calc(25% - 1rem); */
+  /* width:200px; */
+  /* width: calc(33.33% - 1rem);  */
+  max-width: 200px; /* Optional: Limit width for better design */
+  min-width: 150px; /* Optional: Prevent overly narrow notes */
   height: auto;
   min-height:100px;
   background: #fff9c4; /* Light yellow for sticky note */

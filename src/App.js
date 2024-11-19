@@ -3,12 +3,15 @@ import "./Components/Landing";
 import "./Components/AddButton";
 import LandingComponent from "./Components/Landing";
 import UserInputForm from "./Components/UserInputForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import AddButton from "./Components/AddButton";
 import NoteItem from "./Components/NoteItem";
 function App() {
-  const [allNotes, setAllNotes] = useState([]);
+  const [allNotes, setAllNotes] = useState(function(){
+    const notes = localStorage.getItem('notes');
+    return notes ? JSON.parse(notes) : []; 
+  });
   const[isAddButtonClicked, setAddButtonClicked] = useState(false);
   // const [isFormSubmitted, setFormSubmitted] = useState(false);
   const addClickHandler = function () { 
@@ -27,6 +30,9 @@ function App() {
   const deleteNote = function (id) {
     setAllNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
   }
+  useEffect(function () {
+    localStorage.setItem('notes',JSON.stringify(allNotes));
+  },[allNotes]);
   return (
     <div className="App">
      {!allNotes.length > 0 && <LandingComponent /> }
